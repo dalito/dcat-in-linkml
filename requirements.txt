@@ -1,0 +1,1 @@
+schema_automator==0.5.2

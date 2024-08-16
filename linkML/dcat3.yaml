@@ -8,8 +8,49 @@ prefixes:
   dcat: https://w3id.org/None/
 default_prefix: dcat
 slots:
-  member:
-    slot_uri: rdfs:member
+  hasVersion:
+    comments:
+    - A related resource that is a version, edition, or adaptation of the described
+      resource.@en
+    - "Este recurso tiene una versi\xF3n espec\xEDfica.@es"
+    - "Per questa risorsa esiste una risorsa pi\xF9 specifica e versionata.@it"
+    - This resource has a more specific, versioned resource [PAV].@en
+    is_a: hasVersion
+    mixins:
+    - relation
+    - generalizationOf
+    slot_uri: dcat:hasVersion
+    multivalued: true
+  first:
+    comments:
+    - "El primer recurso en una colecci\xF3n ordenada o serie de recursos, al que\
+      \ el recurso pertenece.@es"
+    - La prima risorsa in una collezione ordinata o in una serie di risorse, di cui
+      la risorsa fa parte.@it
+    - The first resource in an ordered collection or series of resources, to which
+      the current resource belongs.@en
+    is_a: first
+    slot_uri: dcat:first
+    multivalued: true
+  last:
+    comments:
+    - "El \xFAltimo recurso en una colecci\xF3n ordenada o serie de recursos, al que\
+      \ el recurso pertenece.@es"
+    - L'ultima risorsa in una collezione ordinata o in una serie di risorse, di cui
+      la risorsa fa parte.@it
+    - The last resource in an ordered collection or series of resources, to which
+      the current resource belongs.@en
+    is_a: last
+    slot_uri: dcat:last
+    multivalued: true
+  prev:
+    comments:
+    - La risorsa precedente a quella attuale in una collezione ordinata o in una serie
+      di risorse.@it
+    - The previous resource (before the current one) in an ordered collection or series
+      of resources.@en
+    is_a: prev
+    slot_uri: dcat:prev
     multivalued: true
   accessService:
     comments:
@@ -85,15 +126,13 @@ slots:
     multivalued: true
   catalog:
     comments:
-    - A catalog whose contents are of interest in the context of this catalog.@en
+    - A catalog that is listed in the catalog.@en
     - Et katalog hvis indhold er relevant i forhold til det aktuelle katalog.@da
     - "Katalog, jeho\u017E obsah je v kontextu tohoto katalogu zaj\xEDmav\xFD.@cs"
     - Un catalogo i cui contenuti sono di interesse nel contesto di questo catalogo.@it
     - "Un cat\xE1logo cuyo contenido es de inter\xE9s en el contexto del cat\xE1logo\
       \ que est\xE1 siendo descripto.@es"
-    is_a: hasPart
-    mixins:
-    - member
+    is_a: resource
     slot_uri: dcat:catalog
     range: Catalog
     multivalued: true
@@ -144,7 +183,7 @@ slots:
     multivalued: true
   dataset:
     comments:
-    - A collection of data that is listed in the catalog.@en
+    - A dataset that is listed in the catalog.@en
     - "En samling af data som er opf\xF8rt i kataloget.@da"
     - "Kolekce dat, kter\xE1 je katalogizov\xE1na v katalogu.@cs"
     - "Relie un catalogue \xE0 un jeu de donn\xE9es faisant partie de ce catalogue.@fr"
@@ -161,9 +200,7 @@ slots:
       @ar"
     - "\u30AB\u30BF\u30ED\u30B0\u306E\u4E00\u90E8\u3067\u3042\u308B\u30C7\u30FC\u30BF\
       \u30BB\u30C3\u30C8\u3002@ja"
-    is_a: hasPart
-    mixins:
-    - member
+    is_a: resource
     slot_uri: dcat:dataset
     range: Dataset
     multivalued: true
@@ -194,21 +231,21 @@ slots:
     comments:
     - "Ceci est un lien direct \xE0 un fichier t\xE9l\xE9chargeable en un format donn\xE9\
       e. Exple fichier CSV ou RDF. Le format est d\xE9crit par les propri\xE9t\xE9\
-      s de distribution dct:format et/ou dcat:mediaType.@fr"
+      s de distribution dcterms:format et/ou dcat:mediaType.@fr"
     - "La URL de un archivo descargable en el formato dato. Por ejemplo, archivo CSV\
       \ o archivo RDF. El formato se describe con las propiedades de la distribuci\xF3\
-      n dct:format y/o dcat:mediaType.@es"
+      n dcterms:format y/o dcat:mediaType.@es"
     - "Questo \xE8 un link diretto al file scaricabile in un dato formato. E.g. un\
-      \ file CSV o un file RDF. Il formato \xE8 descritto dal dct:format e/o dal dcat:mediaType\
-      \ della distribuzione.@it"
+      \ file CSV o un file RDF. Il formato \xE8 descritto dal dcterms:format e/o dal\
+      \ dcat:mediaType della distribuzione.@it"
     - The URL of the downloadable file in a given format. E.g. CSV file or RDF file.
-      The format is indicated by the distribution's dct:format and/or dcat:mediaType.@en
+      The format is indicated by the distribution's dcterms:format and/or dcat:mediaType.@en
     - "URL souboru ke sta\u017Een\xED v dan\xE9m form\xE1tu, nap\u0159\xEDklad CSV\
-      \ nebo RDF soubor. Form\xE1t je pops\xE1n vlastnost\xED distribuce dct:format\
+      \ nebo RDF soubor. Form\xE1t je pops\xE1n vlastnost\xED distribuce dcterms:format\
       \ a/nebo dcat:mediaType.@cs"
     - "URL til fil der kan downloades i et bestemt format. Fx en CSV-fil eller en\
       \ RDF-fil. Formatet for distributionen angives ved hj\xE6lp af egenskaberne\
-      \ dct:format og/eller dcat:mediaType.@da"
+      \ dcterms:format og/eller dcat:mediaType.@da"
     - "dcat:downloadURL\u306Fdcat:accessURL\u306E\u7279\u5B9A\u306E\u5F62\u5F0F\u3067\
       \u3059\u3002\u3057\u304B\u3057\u3001DCAT\u30D7\u30ED\u30D5\u30A1\u30A4\u30EB\
       \u304C\u975E\u30C0\u30A6\u30F3\u30ED\u30FC\u30C9\u30FB\u30ED\u30B1\u30FC\u30B7\
@@ -228,13 +265,13 @@ slots:
       \ \u03AE RDF. \u0397 \u03BC\u03BF\u03C1\u03C6\u03B7 \u03B1\u03C1\u03C7\u03B5\
       \u03AF\u03BF\u03C5 \u03C0\u03B5\u03C1\u03B9\u03B3\u03C1\u03AC\u03C6\u03B5\u03C4\
       \u03B1\u03B9 \u03B1\u03C0\u03CC \u03C4\u03B9\u03C2 \u03B9\u03B4\u03B9\u03CC\u03C4\
-      \u03B7\u03C4\u03B5\u03C2 dct:format \u03AE/\u03BA\u03B1\u03B9 dcat:mediaType\
+      \u03B7\u03C4\u03B5\u03C2 dcterms:format \u03AE/\u03BA\u03B1\u03B9 dcat:mediaType\
       \ \u03C4\u03B7\u03C2 \u03B4\u03B9\u03B1\u03BD\u03BF\u03BC\u03AE\u03C2.@el"
     - "\u0631\u0627\u0628\u0637 \u0645\u0628\u0627\u0634\u0631 \u0644\u0645\u0644\u0641\
       \ \u064A\u0645\u0643\u0646 \u062A\u062D\u0645\u064A\u0644\u0647. \u0646\u0648\
       \u0639 \u0627\u0644\u0645\u0644\u0641 \u064A\u062A\u0645 \u062A\u0648\u0635\u064A\
       \u0641\u0647 \u0628\u0627\u0633\u062A\u062E\u062F\u0627\u0645 \u0627\u0644\u062E\
-      \u0627\u0635\u064A\u0629 dct:format dcat:mediaType @ar"
+      \u0627\u0635\u064A\u0629 dcterms:format dcat:mediaType @ar"
     slot_uri: dcat:downloadURL
     range: Resource
     multivalued: true
@@ -274,6 +311,38 @@ slots:
     - The function of an entity or agent with respect to another entity or resource.@en
     slot_uri: dcat:hadRole
     range: Role
+    multivalued: true
+  hasCurrentVersion:
+    comments:
+    - "Este recurso es m\xE1s espec\xEDfico y versionado con contenido equivalente\
+      \ [PAV].@es"
+    - "Per questa risorsa esiste una risorsa pi\xF9 specifica e versionata, ma con\
+      \ lo stesso contenuto.@it"
+    - This resource has a more specific, versioned resource with equivalent content
+      [PAV].@en
+    is_a: hasVersion
+    slot_uri: dcat:hasCurrentVersion
+    multivalued: true
+  inCatalog:
+    slot_uri: dcat:inCatalog
+    multivalued: true
+  inSeries:
+    comments:
+    - A dataset series of which the dataset is part.@en
+    - "Una serie de conjuntos de datos del cu\xE1l un conjunto de datos es parte.@es"
+    - Una serie di dataset di cui questo dataset fa parte.@it
+    is_a: isPartOf
+    slot_uri: dcat:inSeries
+    multivalued: true
+  isDistributionOf:
+    slot_uri: dcat:isDistributionOf
+    multivalued: true
+  isVersionOf:
+    comments:
+    - A related resource of which the described resource is a version, edition, or
+      adaptation.@en
+    is_a: relation
+    slot_uri: dcterms:isVersionOf
     multivalued: true
   landingPage:
     comments:
@@ -319,11 +388,11 @@ slots:
   mediaType:
     comments:
     - "Cette propri\xE9t\xE9 doit \xEAtre utilis\xE9e quand c'est d\xE9finit le type\
-      \ de m\xE9dia de la distribution en IANA, sinon dct:format DOIT \xEAtre utilis\xE9\
-      \ avec diff\xE9rentes valeurs.@fr"
+      \ de m\xE9dia de la distribution en IANA, sinon dcterms:format DOIT \xEAtre\
+      \ utilis\xE9 avec diff\xE9rentes valeurs.@fr"
     - "Esta propiedad debe ser usada cuando est\xE1 definido el tipo de media de la\
-      \ distribuci\xF3n en IANA, de otra manera dct:format puede ser utilizado con\
-      \ diferentes valores@es"
+      \ distribuci\xF3n en IANA, de otra manera dcterms:format puede ser utilizado\
+      \ con diferentes valores@es"
     - Il tipo di media della distribuzione come definito da IANA@it
     - Medietypen for distributionen som den er defineret af IANA.@da
     - The media type of the distribution as defined by IANA@en
@@ -335,11 +404,11 @@ slots:
       \u03C3\u03BF\u03C5 \u03BC\u03AF\u03B1\u03C2 \u03B4\u03B9\u03B1\u03BD\u03BF\u03BC\
       \u03AE\u03C2 \u03B5\u03AF\u03BD\u03B1\u03B9 \u03BF\u03C1\u03B9\u03C3\u03BC\u03AD\
       \u03BD\u03BF\u03C2 \u03C3\u03C4\u03BF IANA, \u03B1\u03BB\u03BB\u03B9\u03CE\u03C2\
-      \ \u03B7 \u03B9\u03B4\u03B9\u03CC\u03C4\u03B7\u03C4\u03B1 dct:format \u0394\u03A5\
-      \u039D\u0391\u03A4\u0391\u0399 \u03BD\u03B1 \u03C7\u03C1\u03B7\u03C3\u03B9\u03BC\
-      \u03BF\u03C0\u03BF\u03B9\u03B7\u03B8\u03B5\u03AF \u03BC\u03B5 \u03B4\u03B9\u03B1\
-      \u03C6\u03BF\u03C1\u03B5\u03C4\u03B9\u03BA\u03AD\u03C2 \u03C4\u03B9\u03BC\u03AD\
-      \u03C2.@el"
+      \ \u03B7 \u03B9\u03B4\u03B9\u03CC\u03C4\u03B7\u03C4\u03B1 dcterms:format \u0394\
+      \u03A5\u039D\u0391\u03A4\u0391\u0399 \u03BD\u03B1 \u03C7\u03C1\u03B7\u03C3\u03B9\
+      \u03BC\u03BF\u03C0\u03BF\u03B9\u03B7\u03B8\u03B5\u03AF \u03BC\u03B5 \u03B4\u03B9\
+      \u03B1\u03C6\u03BF\u03C1\u03B5\u03C4\u03B9\u03BA\u03AD\u03C2 \u03C4\u03B9\u03BC\
+      \u03AD\u03C2.@el"
     - "\u064A\u062C\u0628 \u0627\u0633\u062A\u062E\u062F\u0627\u0645 \u0647\u0630\u0647\
       \ \u0627\u0644\u062E\u0627\u0635\u064A\u0629 \u0625\u0630\u0627 \u0643\u0627\
       \u0646 \u0646\u0648\u0639 \u0627\u0644\u0645\u0644\u0641 \u0645\u0639\u0631\u0641\
@@ -348,11 +417,17 @@ slots:
       \u30E1\u30C7\u30A3\u30A2\u30FB\u30BF\u30A4\u30D7\u304CIANA\u3067\u5B9A\u7FA9\
       \u3055\u308C\u3066\u3044\u308B\u3068\u304D\u306B\u4F7F\u7528\u3059\u3079\u304D\
       \u3067\uFF08SHOULD\uFF09\u3001\u305D\u3046\u3067\u306A\u3044\u5834\u5408\u306B\
-      \u306F\u3001dct:format\u3092\u69D8\u3005\u306A\u5024\u3068\u5171\u306B\u4F7F\
+      \u306F\u3001dcterms:format\u3092\u69D8\u3005\u306A\u5024\u3068\u5171\u306B\u4F7F\
       \u7528\u3067\u304D\u307E\u3059\uFF08MAY\uFF09\u3002@ja"
     is_a: format
     slot_uri: dcat:mediaType
     range: MediaType
+    multivalued: true
+  next:
+    slot_uri: dcat:next
+    multivalued: true
+  nextVersion:
+    slot_uri: dcat:nextVersion
     multivalued: true
   packageFormat:
     comments:
@@ -372,6 +447,13 @@ slots:
     is_a: format
     slot_uri: dcat:packageFormat
     range: MediaType
+    multivalued: true
+  previousVersion:
+    comments:
+    - La versione precedente di una risorsa.@it
+    - The previous version of a resource in a lineage [PAV].@en
+    is_a: wasRevisionOf
+    slot_uri: dcat:previousVersion
     multivalued: true
   qualifiedRelation:
     comments:
@@ -407,6 +489,17 @@ slots:
     slot_uri: dcat:record
     range: CatalogRecord
     multivalued: true
+  resource:
+    comments:
+    - A resource that is listed in the catalog.@en
+    - Una risorsa elencata nel catalogo.@it
+    is_a: hasPart
+    slot_uri: dcat:resource
+    range: Resource
+    multivalued: true
+  seriesMember:
+    slot_uri: dcat:seriesMember
+    multivalued: true
   servesDataset:
     comments:
     - A collection of data that this DataService can distribute.@en
@@ -419,14 +512,12 @@ slots:
     multivalued: true
   service:
     comments:
-    - A site or endpoint that is listed in the catalog.@en
+    - A service that is listed in the catalog.@en
     - "Et websted eller et endpoint som er opf\xF8rt i kataloget.@da"
     - "Um\xEDst\u011Bn\xED \u010Di p\u0159\xEDstupov\xFD bod registrovan\xFD v katalogu.@cs"
     - "Un sitio o 'endpoint' que est\xE1 listado en el cat\xE1logo.@es"
     - Un sito o endpoint elencato nel catalogo.@it
-    is_a: hasPart
-    mixins:
-    - member
+    is_a: resource
     slot_uri: dcat:service
     range: DataService
     multivalued: true
@@ -458,7 +549,6 @@ slots:
       @ja"
     is_a: subject
     slot_uri: dcat:theme
-    range: Concept
     multivalued: true
   themeTaxonomy:
     comments:
@@ -492,9 +582,13 @@ slots:
     slot_uri: dcat:themeTaxonomy
     range: Resource
     multivalued: true
+  generalizationOf:
+    slot_uri: prov:generalizationOf
+    multivalued: true
   homepage:
     comments:
-    - This axiom needed so that Protege loads DCAT2 without errors.
+    - Este axioma se necesita de manera que Protege cargue DCAT3 sin problemas.@es
+    - This axiom needed so that Protege loads DCAT 3 without errors.@en
     slot_uri: foaf:homepage
     multivalued: true
   page:
@@ -502,10 +596,17 @@ slots:
     multivalued: true
   primaryTopic:
     comments:
-    - This axiom needed so that Protege loads DCAT2 without errors.
+    - Este axioma se necesita de manera que Protege cargue DCAT 3 sin problemas.@es
+    - This axiom needed so that Protege loads DCAT 3 without errors.@en
     slot_uri: foaf:primaryTopic
     multivalued: true
   bbox:
+    comments:
+    - Den geografiske omskrevne firkant af en ressource.@da
+    - "El cuadro delimitador geogr\xE1fico para un recurso.@es"
+    - Il riquadro di delimitazione geografica di una risorsa.@it
+    - "Ohrani\u010Den\xED geografick\xE9 oblasti zdroje.@cs"
+    - The geographic bounding box of a spatial thing [SDW-BP].@en
     slot_uri: dcat:bbox
     multivalued: true
   byteSize:
@@ -525,9 +626,21 @@ slots:
     slot_uri: dcat:byteSize
     multivalued: true
   centroid:
+    comments:
+    - Det geometrisk tyngdepunkt (centroid) for en ressource.@da
+    - "El centro geogr\xE1fico (centroide) de un recurso.@es"
+    - "Geografick\xFD st\u0159ed (centroid) zdroje.@cs"
+    - Il centro geografico (centroide) di una risorsa.@it
+    - The geographic center (centroid) of a spatial thing [SDW-BP].@en
     slot_uri: dcat:centroid
     multivalued: true
   endDate:
+    comments:
+    - "El fin del per\xEDodo.@es"
+    - "Konec doby trv\xE1n\xED.@cs"
+    - La fine del periodo.@it
+    - "Slutningen p\xE5 perioden.@da"
+    - The end of the period.@en
     slot_uri: dcat:endDate
     multivalued: true
   keyword:
@@ -548,7 +661,6 @@ slots:
       \u0646\u0627\u062A@ar"
     - "\u30C7\u30FC\u30BF\u30BB\u30C3\u30C8\u3092\u8A18\u8FF0\u3057\u3066\u3044\u308B\
       \u30AD\u30FC\u30EF\u30FC\u30C9\u307E\u305F\u306F\u30BF\u30B0\u3002@ja"
-    is_a: subject
     slot_uri: dcat:keyword
     multivalued: true
   spatialResolutionInMeters:
@@ -576,6 +688,13 @@ slots:
     - "per\xEDodo de tiempo m\xEDnimo en el conjunto de datos.@es"
     slot_uri: dcat:temporalResolution
     multivalued: true
+  version:
+    comments:
+    - "El indicador de versi\xF3n (nombre o identificador) del recurso.@es"
+    - L'indicatore di versione (un nome o un identificatore) di una risorsa.@it
+    - The version indicator (name or identifier) of a resource.@en
+    slot_uri: dcat:version
+    multivalued: true
   domainIncludes:
     slot_uri: http://purl.org/dc/dcam/domainIncludes
     multivalued: true
@@ -586,14 +705,14 @@ slots:
     comments:
     - An entity responsible for making contributions to the resource.@en
     is_a: contributor
-    slot_uri: dct:contributor
+    slot_uri: dcterms:contributor
     multivalued: true
   coverage:
     comments:
     - The spatial or temporal topic of the resource, spatial applicability of the
       resource, or jurisdiction under which the resource is relevant.@en
     is_a: coverage
-    slot_uri: dct:coverage
+    slot_uri: dcterms:coverage
     multivalued: true
   creator:
     comments:
@@ -601,7 +720,7 @@ slots:
     is_a: contributor
     mixins:
     - creator
-    slot_uri: dct:creator
+    slot_uri: dcterms:creator
     multivalued: true
   date:
     comments:
@@ -613,7 +732,7 @@ slots:
     comments:
     - An account of the resource.@en
     is_a: description
-    slot_uri: dct:description
+    slot_uri: dcterms:description
     multivalued: true
   format:
     comments:
@@ -631,13 +750,13 @@ slots:
     comments:
     - A language of the resource.@en
     is_a: language
-    slot_uri: dct:language
+    slot_uri: dcterms:language
     multivalued: true
   publisher:
     comments:
     - An entity responsible for making the resource available.@en
     is_a: publisher
-    slot_uri: dct:publisher
+    slot_uri: dcterms:publisher
     multivalued: true
   relation:
     comments:
@@ -649,7 +768,7 @@ slots:
     comments:
     - Information about rights held in and over the resource.@en
     is_a: rights
-    slot_uri: dct:rights
+    slot_uri: dcterms:rights
     multivalued: true
   source:
     comments:
@@ -657,7 +776,7 @@ slots:
     is_a: relation
     mixins:
     - source
-    slot_uri: dct:source
+    slot_uri: dcterms:source
     multivalued: true
   subject:
     comments:
@@ -675,176 +794,170 @@ slots:
     comments:
     - The nature or genre of the resource.@en
     is_a: type
-    slot_uri: dct:type
+    slot_uri: dcterms:type
     multivalued: true
   abstract:
     comments:
     - A summary of the resource.@en
     is_a: description
-    slot_uri: dct:abstract
+    slot_uri: dcterms:abstract
     multivalued: true
   accessRights:
     comments:
     - Information about who access the resource or an indication of its security status.@en
     is_a: rights
-    slot_uri: dct:accessRights
+    slot_uri: dcterms:accessRights
     multivalued: true
   accrualMethod:
     comments:
     - The method by which items are added to a collection.@en
-    slot_uri: dct:accrualMethod
+    slot_uri: dcterms:accrualMethod
     multivalued: true
   accrualPeriodicity:
     comments:
     - The frequency with which items are added to a collection.@en
-    slot_uri: dct:accrualPeriodicity
+    slot_uri: dcterms:accrualPeriodicity
     multivalued: true
   accrualPolicy:
     comments:
     - The policy governing the addition of items to a collection.@en
-    slot_uri: dct:accrualPolicy
+    slot_uri: dcterms:accrualPolicy
     multivalued: true
   audience:
     comments:
     - A class of agents for whom the resource is intended or useful.@en
-    slot_uri: dct:audience
+    slot_uri: dcterms:audience
     multivalued: true
   conformsTo:
     comments:
     - An established standard to which the described resource conforms.@en
     is_a: relation
-    slot_uri: dct:conformsTo
+    slot_uri: dcterms:conformsTo
     multivalued: true
   educationLevel:
     comments:
     - A class of agents, defined in terms of progression through an educational or
       training context, for which the described resource is intended.@en
     is_a: audience
-    slot_uri: dct:educationLevel
+    slot_uri: dcterms:educationLevel
     multivalued: true
   extent:
     comments:
     - The size or duration of the resource.@en
     is_a: format
-    slot_uri: dct:extent
+    slot_uri: dcterms:extent
     multivalued: true
   hasFormat:
     comments:
     - A related resource that is substantially the same as the pre-existing described
       resource, but in another format.@en
     is_a: relation
-    slot_uri: dct:hasFormat
-    multivalued: true
-  hasVersion:
-    comments:
-    - A related resource that is a version, edition, or adaptation of the described
-      resource.@en
-    is_a: relation
-    slot_uri: dct:hasVersion
+    slot_uri: dcterms:hasFormat
     multivalued: true
   isFormatOf:
     comments:
     - A pre-existing related resource that is substantially the same as the described
       resource, but in another format.@en
     is_a: relation
-    slot_uri: dct:isFormatOf
-    multivalued: true
-  isPartOf:
-    comments:
-    - A related resource in which the described resource is physically or logically
-      included.@en
-    is_a: relation
-    slot_uri: dct:isPartOf
+    slot_uri: dcterms:isFormatOf
     multivalued: true
   isReferencedBy:
     comments:
     - A related resource that references, cites, or otherwise points to the described
       resource.@en
     is_a: relation
-    slot_uri: dct:isReferencedBy
+    slot_uri: dcterms:isReferencedBy
     multivalued: true
   isReplacedBy:
     comments:
     - A related resource that supplants, displaces, or supersedes the described resource.@en
     is_a: relation
-    slot_uri: dct:isReplacedBy
+    slot_uri: dcterms:isReplacedBy
     multivalued: true
   isRequiredBy:
     comments:
     - A related resource that requires the described resource to support its function,
       delivery, or coherence.@en
     is_a: relation
-    slot_uri: dct:isRequiredBy
-    multivalued: true
-  isVersionOf:
-    comments:
-    - A related resource of which the described resource is a version, edition, or
-      adaptation.@en
-    is_a: relation
-    slot_uri: dct:isVersionOf
+    slot_uri: dcterms:isRequiredBy
     multivalued: true
   license:
     comments:
     - A legal document giving official permission to do something with the resource.@en
     is_a: rights
-    slot_uri: dct:license
+    slot_uri: dcterms:license
     multivalued: true
   mediator:
     comments:
     - An entity that mediates access to the resource.@en
     is_a: audience
-    slot_uri: dct:mediator
+    slot_uri: dcterms:mediator
     multivalued: true
   medium:
     comments:
     - The material or physical carrier of the resource.@en
     is_a: format
-    slot_uri: dct:medium
+    slot_uri: dcterms:medium
     multivalued: true
   references:
     comments:
     - A related resource that is referenced, cited, or otherwise pointed to by the
       described resource.@en
     is_a: relation
-    slot_uri: dct:references
+    slot_uri: dcterms:references
     multivalued: true
   replaces:
     comments:
     - A related resource that is supplanted, displaced, or superseded by the described
       resource.@en
     is_a: relation
-    slot_uri: dct:replaces
+    slot_uri: dcterms:replaces
     multivalued: true
   requires:
     comments:
     - A related resource that is required by the described resource to support its
       function, delivery, or coherence.@en
     is_a: relation
-    slot_uri: dct:requires
+    slot_uri: dcterms:requires
     multivalued: true
   spatial:
     comments:
     - Spatial characteristics of the resource.@en
     is_a: coverage
-    slot_uri: dct:spatial
+    slot_uri: dcterms:spatial
     multivalued: true
   tableOfContents:
     comments:
     - A list of subunits of the resource.@en
     is_a: description
-    slot_uri: dct:tableOfContents
+    slot_uri: dcterms:tableOfContents
     multivalued: true
   temporal:
     comments:
     - Temporal characteristics of the resource.@en
     is_a: coverage
-    slot_uri: dct:temporal
+    slot_uri: dcterms:temporal
     multivalued: true
-  affiliation:
-    slot_uri: sdo:affiliation
+  editor:
+    slot_uri: bibo:editor
     multivalued: true
-  maker:
-    slot_uri: foaf:maker
+  translator:
+    slot_uri: bibo:translator
+    multivalued: true
+  preferredNamespacePrefix:
+    slot_uri: vann:preferredNamespacePrefix
+    multivalued: true
+  preferredNamespaceUri:
+    slot_uri: vann:preferredNamespaceUri
+    multivalued: true
+  versionNotes:
+    slot_uri: adms:versionNotes
+    multivalued: true
+  memberOf:
+    slot_uri: org:memberOf
+    multivalued: true
+  depiction:
+    slot_uri: foaf:depiction
     multivalued: true
   name:
     slot_uri: foaf:name
@@ -891,6 +1004,12 @@ slots:
     comments:
     - A related resource that is included either physically or logically in the described
       resource.@en
+    is_a: relation
+    multivalued: true
+  isPartOf:
+    comments:
+    - A related resource in which the described resource is physically or logically
+      included.@en
     is_a: relation
     multivalued: true
   issued:
@@ -975,39 +1094,39 @@ classes:
   Agent:
     comments:
     - A resource that acts or has the power to act.@en
-    class_uri: dct:Agent
+    class_uri: dcterms:Agent
   AgentClass:
     comments:
     - A group of agents.@en
     is_a: Class
-    class_uri: dct:AgentClass
+    class_uri: dcterms:AgentClass
   BibliographicResource:
     comments:
     - A book, article, or other documentary resource.@en
-    class_uri: dct:BibliographicResource
+    class_uri: dcterms:BibliographicResource
   FileFormat:
     comments:
     - A digital resource format.@en
     is_a: MediaType
-    class_uri: dct:FileFormat
+    class_uri: dcterms:FileFormat
   Frequency:
     comments:
     - A rate at which something recurs.@en
-    class_uri: dct:Frequency
+    class_uri: dcterms:Frequency
   Jurisdiction:
     comments:
     - The extent or range of judicial, law enforcement, or other authority.@en
     is_a: LocationPeriodOrJurisdiction
-    class_uri: dct:Jurisdiction
+    class_uri: dcterms:Jurisdiction
   LicenseDocument:
     comments:
     - A legal document giving official permission to do something with a resource.@en
     is_a: RightsStatement
-    class_uri: dct:LicenseDocument
+    class_uri: dcterms:LicenseDocument
   LinguisticSystem:
     comments:
     - A system of signs, symbols, sounds, gestures, or rules used in communication.@en
-    class_uri: dct:LinguisticSystem
+    class_uri: dcterms:LinguisticSystem
   Location:
     comments:
     - A spatial region or named place.@en
@@ -1015,28 +1134,28 @@ classes:
     slots:
     - bbox
     - centroid
-    class_uri: dct:Location
+    class_uri: dcterms:Location
   LocationPeriodOrJurisdiction:
     comments:
     - A location, period of time, or jurisdiction.@en
-    class_uri: dct:LocationPeriodOrJurisdiction
+    class_uri: dcterms:LocationPeriodOrJurisdiction
   MediaType:
     comments:
     - A file format or physical medium.@en
     is_a: MediaTypeOrExtent
-    class_uri: dct:MediaType
+    class_uri: dcterms:MediaType
   MediaTypeOrExtent:
     comments:
     - A media type or extent.@en
-    class_uri: dct:MediaTypeOrExtent
+    class_uri: dcterms:MediaTypeOrExtent
   MethodOfAccrual:
     comments:
     - A method by which resources are added to a collection.@en
-    class_uri: dct:MethodOfAccrual
+    class_uri: dcterms:MethodOfAccrual
   MethodOfInstruction:
     comments:
     - A process that is used to engender knowledge, attitudes, and skills.@en
-    class_uri: dct:MethodOfInstruction
+    class_uri: dcterms:MethodOfInstruction
   PeriodOfTime:
     comments:
     - An interval of time that is named or defined by its start and end dates.@en
@@ -1044,41 +1163,41 @@ classes:
     slots:
     - endDate
     - startDate
-    class_uri: dct:PeriodOfTime
+    class_uri: dcterms:PeriodOfTime
   PhysicalMedium:
     comments:
     - A physical material or carrier.@en
     is_a: MediaType
-    class_uri: dct:PhysicalMedium
+    class_uri: dcterms:PhysicalMedium
   PhysicalResource:
     comments:
     - A material thing.@en
-    class_uri: dct:PhysicalResource
+    class_uri: dcterms:PhysicalResource
   Policy:
     comments:
     - A plan or course of action by an authority, intended to influence and determine
       decisions, actions, and other matters.@en
-    class_uri: dct:Policy
+    class_uri: dcterms:Policy
   ProvenanceStatement:
     comments:
     - Any changes in ownership and custody of a resource since its creation that are
       significant for its authenticity, integrity, and interpretation.@en
-    class_uri: dct:ProvenanceStatement
+    class_uri: dcterms:ProvenanceStatement
   RightsStatement:
     comments:
     - A statement about the intellectual property rights (IPR) held in or over a resource,
       a legal document giving official permission to do something with a resource,
       or a statement about access rights.@en
-    class_uri: dct:RightsStatement
+    class_uri: dcterms:RightsStatement
   SizeOrDuration:
     comments:
     - A dimension or extent, or a time taken to play or execute.@en
     is_a: MediaTypeOrExtent
-    class_uri: dct:SizeOrDuration
+    class_uri: dcterms:SizeOrDuration
   Standard:
     comments:
     - A reference point against which other things can be evaluated or compared.@en
-    class_uri: dct:Standard
+    class_uri: dcterms:Standard
   List:
     class_uri: rdf:List
   Class:
@@ -1126,6 +1245,7 @@ classes:
     - catalog
     - dataset
     - record
+    - resource
     - service
     - themeTaxonomy
     class_uri: dcat:Catalog
@@ -1219,6 +1339,16 @@ classes:
     slots:
     - distribution
     class_uri: dcat:Dataset
+  DatasetSeries:
+    comments:
+    - A collection of datasets that are published separately, but share some characteristics
+      that group them.@en
+    - "Una colecci\xF3n de conjuntos de datos publicados por separado, pero que comparten\
+      \ caracter\xEDsticas que los agrupan.@es"
+    - Una collezione di dataset che sono pubblicati separatamente, ma che condividono
+      caratteristiche che li rendono parte di uno stesso gruppo.@it
+    is_a: Dataset
+    class_uri: dcat:DatasetSeries
   Distribution:
     comments:
     - A specific representation of a dataset. A dataset might be available in multiple
@@ -1335,6 +1465,8 @@ classes:
       \ risorse.@it"
     is_a: Concept
     class_uri: dcat:Role
+  Organization:
+    class_uri: org:Organization
   Document:
     class_uri: foaf:Document
   Person:
