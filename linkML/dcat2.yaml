@@ -1,0 +1,8 @@
+name: MySchema
+id: https://example.org/MySchema
+imports:
+- linkml:types
+prefixes:
+  MySchema: https://example.org/MySchema
+  linkml: https://w3id.org/linkml/
+default_prefix: MySchema
