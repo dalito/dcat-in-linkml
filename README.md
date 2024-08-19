@@ -13,12 +13,12 @@ DCAT as Owl ontology in RDF:
 
 Here we try a conversion with [schema-automator](https://github.com/linkml/schema-automator) from the linkML team.
 
-First, create a virtual environment and install schema-automator. It also requires setuptools which is not listed in its dependencies (as of v0.5.2).
+First, create a virtual environment and install schema-automator.
 
 ```cmd
 py -3.12 -m venv .venv
 .venv/scripts/activate
-pip install schema-automator setuptools
+pip install schema-automator notebook
 ```
 
 The exact versions of all packages used are documented in `requirements_frozen.txt` (created by `pip freeze > requirements_frozen.txt`).

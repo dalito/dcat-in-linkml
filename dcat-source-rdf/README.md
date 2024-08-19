@@ -20,3 +20,7 @@ C:\Users\dlinke\MyProg_local\gh-dalito\dcat-in-linkml (main -> origin)
  - <http://www.w3.org/ns/dcat#version> <http://www.w3.org/2002/07/owl#equivalentProperty> <http://purl.org/pav/version>.
  - <http://www.w3.org/ns/dcat#hasCurrentVersion> <http://www.w3.org/2002/07/owl#equivalentProperty> <http://purl.org/pav/hasCurrentVersion>.
 ```
+
+- dcat3-ap_shapes_en-names.ttl from (uses natural names) from https://github.com/SEMICeu/DCAT-AP/blob/master/releases/3.0.0/html/shacl/shapes.ttl
+- dcat3-ap_3_SHACL.ttl (uses UUIDs) from https://github.com/SEMICeu/DCAT-AP/blob/master/releases/3.0.0/shacl/dcat-ap-SHACL.ttl
+
